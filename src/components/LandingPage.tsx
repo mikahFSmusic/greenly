@@ -39,7 +39,7 @@ export const LandingPage = () => {
         <br/>
         <Box className={classes.typeText}>
           The time to respond to the
-          spectre of climate change was yesterday. But our species is at least
+          spectre of climate change was <b>yesterday</b>. But our species is at least
           finally stepping up to the challenge. Our global economy is moving away
           from oil, gas, and solar towards a better future - a greener future.
         </Box>
