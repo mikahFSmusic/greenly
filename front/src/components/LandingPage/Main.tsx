@@ -52,10 +52,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Main = () => {
   const classes = useStyles();
+
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    // submit email to mongo db
+  }
+
   return (
     <div className={classes.container}>
       <Typography>
-        <br />
         <p className={classes.comingSoon}>COMING SOON...</p>
         <img src={GreenlyLogo} alt="logo" className={classes.logo} />
         <br />
@@ -76,7 +80,7 @@ export const Main = () => {
             variant="filled"
             label="Enter your email"
             color="primary"
-            InputProps={{ endAdornment: <SubmitButton /> }}
+            InputProps={{ endAdornment: <SubmitButton onSubmit={handleSubmit} /> }}
             margin="none"
           ></TextField>
         </form>
@@ -86,9 +90,14 @@ export const Main = () => {
   );
 };
 
-const SubmitButton = () => {
+type SubmitProps = {
+  onSubmit: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined
+}
+
+const SubmitButton = (props: SubmitProps) => {
   return (
     <Button
+      onClick={props.onSubmit}
       style={{
         height: "100%"
       }}

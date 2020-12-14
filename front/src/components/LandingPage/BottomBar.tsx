@@ -6,11 +6,11 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       backgroundColor: "rgb(0, 63, 30)",
-      height: "10rem",
       color: "#BCFFA7",
       justifyContent: "center",
       textAlign: "center",
-      display:"flex"
+      display:"flex",
+      minHeight: "4vh"
     },
     gridContainer: {
       display: "flex",
