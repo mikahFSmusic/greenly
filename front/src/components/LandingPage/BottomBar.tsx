@@ -1,6 +1,11 @@
 import React from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import { Link } from "@material-ui/core";
+
+interface BottomBarProps {
+  contactClick: () => void
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -10,16 +15,19 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       textAlign: "center",
       display:"flex",
-      minHeight: "4vh"
+      minHeight: "6vh"
     },
     gridContainer: {
       display: "flex",
       alignContent: "center",
     },
+    link: {
+      color: "inherit"
+    }
   })
 );
 
-export const BottomBar = () => {
+export const BottomBar = (props: BottomBarProps) => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -33,13 +41,19 @@ export const BottomBar = () => {
         justify="center"
       >
         <Grid item xs={4}>
-          About Us
+          <Link href="#" className={classes.link}>
+            About Us
+          </Link>
         </Grid>
         <Grid item xs={4}>
-          Contact Us
+          <Link href="#" className={classes.link} onClick={props.contactClick}>
+            Contact Us
+          </Link>
         </Grid>
         <Grid item xs={4}>
-          Twitter
+          <Link href="#" className={classes.link}>
+            Twitter
+          </Link>
         </Grid>
       </Grid>
     </div>
