@@ -4,33 +4,26 @@ import Grid from "@material-ui/core/Grid";
 import { Link } from "@material-ui/core";
 
 interface BottomBarProps {
-  contactClick: () => void
+  contactClick: () => void;
+  className: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {
-      backgroundColor: "rgb(0, 63, 30)",
-      color: "#BCFFA7",
-      justifyContent: "center",
-      textAlign: "center",
-      display:"flex",
-      minHeight: "6vh"
-    },
     gridContainer: {
       display: "flex",
       alignContent: "center",
     },
     link: {
-      color: "inherit"
-    }
+      color: "inherit",
+    },
   })
 );
 
 export const BottomBar = (props: BottomBarProps) => {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
+    <div className={props.className}>
       <Grid
         container
         spacing={3}

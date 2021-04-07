@@ -1,0 +1,45 @@
+.Content {
+  text-align: center;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 1em;
+  margin-inline-end: 1em;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00983em;
+  height: 100%;
+}
+
+.Coming-soon {
+  color: #07c25e;
+}
+
+.Text-body {
+  margin-right: 29%;
+  margin-left: 29%;
+  align-self: center;
+  justify-self: center;
+  font-family: Nunito Sans;
+  font-size: 26px;
+}
+
+.Join-us {
+  font-family: Nunito Sans;
+  font-size: 40;
+  flex-wrap: wrap;
+  margin: 25;
+}
+
+.Form {
+  padding: 0;
+}
+
+.Email-submit {
+  width: "40vw";
+  margin-right: "20%";
+  margin-left: "20%";
+  margin-bottom: "20px";
+}

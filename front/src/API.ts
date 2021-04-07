@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-const baseUrl: string = "http://localhost:4000";
+const baseUrl: string = "https://greenly-backend.herokuapp.com"
 
 export const addEmail = async (
   inputEmail: string
