@@ -5,50 +5,50 @@ import GreenlyLogo from "../../assets/Greenly_logo.png";
 import { TextField, Typography } from "@material-ui/core";
 import Background from "../../assets/BackgroundWithClouds.png";
 import { addEmail } from "../../API";
+import "./Main.scss";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     content: {
-      textAlign: "center",
-      display: "block",
-      marginBlockStart: "1em",
-      marginBlockEnd: "1em",
-      marginInlineStart: "1em",
-      marginInlineEnd: "1em",
-      margin: 0,
-      fontSize: "1rem",
-      fontFamily: "Roboto, Helvetica, Arial, san-serif",
-      fontWeight: 400,
-      lineHeight: 1.5,
-      letterSpacing: "0.00983em",
+      // textAlign: "center",
+      // display: "block",
+      // marginBlockStart: "1em",
+      // marginBlockEnd: "1em",
+      // marginInlineStart: "1em",
+      // marginInlineEnd: "1em",
+      // margin: 0,
+      // fontSize: "1rem",
+      // fontFamily: "Roboto, Helvetica, Arial, san-serif",
+      // fontWeight: 400,
+      // lineHeight: 1.5,
+      // letterSpacing: "0.00983em",
     },
     comingSoon: {
-      color: "#07C25E",
+      // color: "#07C25E",
     },
     logo: {},
-
     textBody: {
-      marginRight: "29%",
-      marginLeft: "29%",
-      alignSelf: "center",
-      justifySelf: "center",
-      fontFamily: "Nunito Sans",
-      fontSize: "26px",
+      // marginRight: "29%",
+      // marginLeft: "29%",
+      // alignSelf: "center",
+      // justifySelf: "center",
+      // fontFamily: "Nunito Sans",
+      // fontSize: "26px",
     },
     joinUs: {
-      fontFamily: "Nunito Sans",
-      fontSize: 40,
-      flexWrap: "wrap",
-      margin: 25,
+      // fontFamily: "Nunito Sans",
+      // fontSize: 40,
+      // flexWrap: "wrap",
+      // margin: 25,
     },
     form: {
-      padding: 0,
+      // padding: 0,
     },
     emailSubmit: {
-      width: "40vw",
-      marginRight: "20%",
-      marginLeft: "20%",
-      marginBottom: "20px",
+      // width: "40vw",
+      // marginRight: "20%",
+      // marginLeft: "20%",
+      // marginBottom: "20px",
     },
   })
 );
@@ -74,17 +74,18 @@ export const Main = (props: MainProps) => {
   ) => {
     if (email) {
       addEmail(email);
+      setEmail("");
     }
   };
 
   return (
     <div className={props.className}>
-      <div className={classes.content}>
-        <p className={classes.comingSoon}>COMING SOON...</p>
-        <img src={GreenlyLogo} alt="logo" className={classes.logo} />
+      <div className="Content">
+        <p className="Coming-soon">COMING SOON...</p>
+        <img src={GreenlyLogo} alt="logo" className="Logo" />
         <br />
         <br />
-        <Typography className={classes.textBody} align="center">
+        <Typography className="Text-body">
           For centuries, our fossil fuel civilization has pushed the world off
           balance.
           <br />
@@ -93,12 +94,12 @@ export const Main = (props: MainProps) => {
           humanity's progress towards a future unconstrained by carbon emissions
           and their ecological consequences.
         </Typography>
-        <p className={classes.joinUs}>Join us and fight for our planet</p>
-        <form className={classes.form}>
+        <p className="Join-us">Join us and fight for our planet</p>
+        <form className="Form">
           <TextField
-            className={classes.emailSubmit}
+            className="Email-submit"
             variant="filled"
-            label="Enter your email"
+            label="Submit your email for an invite"
             color="primary"
             InputProps={{
               endAdornment: <SubmitButton onSubmit={handleSubmit} />,

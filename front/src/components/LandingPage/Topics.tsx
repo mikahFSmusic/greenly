@@ -1,5 +1,6 @@
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core/";
+import "./Topics.scss";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,13 +22,14 @@ export const Topics = (props: TopicsProps) => {
   const classes = useStyles();
   return (
     <div className={props.className}>
-      <h2 className={classes.header}>
+      <br></br>
+      <h2 className="header">
         Topics we are interested in covering (send us a pitch!)
       </h2>
       <Grid
         container
         spacing={3}
-        className={classes.column}
+        className="column"
         alignItems="center"
         direction="row"
       >

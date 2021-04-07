@@ -45,7 +45,7 @@ export const BottomBar = (props: BottomBarProps) => {
         </Grid>
         <Grid item xs={4}>
           <Link href="#" className={classes.link}>
-            Twitter
+            Facebook
           </Link>
         </Grid>
       </Grid>
