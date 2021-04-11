@@ -1,57 +1,16 @@
 import React, { ChangeEvent, useState } from "react";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import GreenlyLogo from "../../assets/Greenly_logo.png";
-import { TextField, Typography } from "@material-ui/core";
-import Background from "../../assets/BackgroundWithClouds.png";
+import {
+  TextField,
+  Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@material-ui/core";
 import { addEmail } from "../../API";
 import "./Main.scss";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    content: {
-      // textAlign: "center",
-      // display: "block",
-      // marginBlockStart: "1em",
-      // marginBlockEnd: "1em",
-      // marginInlineStart: "1em",
-      // marginInlineEnd: "1em",
-      // margin: 0,
-      // fontSize: "1rem",
-      // fontFamily: "Roboto, Helvetica, Arial, san-serif",
-      // fontWeight: 400,
-      // lineHeight: 1.5,
-      // letterSpacing: "0.00983em",
-    },
-    comingSoon: {
-      // color: "#07C25E",
-    },
-    logo: {},
-    textBody: {
-      // marginRight: "29%",
-      // marginLeft: "29%",
-      // alignSelf: "center",
-      // justifySelf: "center",
-      // fontFamily: "Nunito Sans",
-      // fontSize: "26px",
-    },
-    joinUs: {
-      // fontFamily: "Nunito Sans",
-      // fontSize: 40,
-      // flexWrap: "wrap",
-      // margin: 25,
-    },
-    form: {
-      // padding: 0,
-    },
-    emailSubmit: {
-      // width: "40vw",
-      // marginRight: "20%",
-      // marginLeft: "20%",
-      // marginBottom: "20px",
-    },
-  })
-);
 
 type MainProps = {
   className: string;
@@ -59,7 +18,8 @@ type MainProps = {
 
 export const Main = (props: MainProps) => {
   const [email, setEmail] = useState("");
-  const classes = useStyles();
+  const [successModalOpen, setSuccessModalOpen] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleEmailChange = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -69,13 +29,27 @@ export const Main = (props: MainProps) => {
     setEmail(value);
   };
 
-  const handleSubmit = (
+  const handleEmailSubmit = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     if (email) {
-      addEmail(email);
-      setEmail("");
+      setLoading(true);
+      const res = await addEmail(email);
+      console.log(res);
+      if (res.status === 201) {
+        setEmail("");
+        setSuccessModalOpen(true);
+        setLoading(false);
+      }
     }
+  };
+
+  const clickOpen = () => {
+    setSuccessModalOpen(true);
+  };
+
+  const clickClose = () => {
+    setSuccessModalOpen(false);
   };
 
   return (
@@ -102,13 +76,24 @@ export const Main = (props: MainProps) => {
             label="Submit your email for an invite"
             color="primary"
             InputProps={{
-              endAdornment: <SubmitButton onSubmit={handleSubmit} />,
+              endAdornment: (
+                <SubmitButton
+                  onSubmit={handleEmailSubmit}
+                  disabled={loading ? true : false}
+                />
+              ),
             }}
             margin="none"
             onChange={handleEmailChange}
+            value={email}
           ></TextField>
         </form>
       </div>
+      <EmailSuccessModal
+        open={successModalOpen}
+        clickOpen={clickOpen}
+        clickClose={clickClose}
+      />
     </div>
   );
 };
@@ -118,18 +103,46 @@ type SubmitProps = {
   onSubmit:
     | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
     | undefined;
+  disabled: boolean;
 };
 
-const SubmitButton = (props: SubmitProps) => {
+const SubmitButton = ({ onSubmit, disabled }: SubmitProps) => {
   return (
     <Button
-      onClick={props.onSubmit}
+      onClick={onSubmit}
       style={{
         height: "100%",
       }}
       disableElevation
+      disabled={disabled}
     >
       Submit
     </Button>
+  );
+};
+
+interface IEmailSuccessModal {
+  open: boolean;
+  clickOpen: () => void;
+  clickClose: () => void;
+}
+
+const EmailSuccessModal = ({
+  open,
+  clickClose,
+  clickOpen,
+}: IEmailSuccessModal) => {
+  return (
+    <Dialog
+      open={open}
+      onEscapeKeyDown={clickClose}
+      onBackdropClick={clickClose}
+    >
+      <DialogTitle>Email confirmation</DialogTitle>
+      <DialogContent>Email Submitted Successfully!</DialogContent>
+      <DialogActions>
+        <Button onClick={clickClose}>Confirm</Button>
+      </DialogActions>
+    </Dialog>
   );
 };
