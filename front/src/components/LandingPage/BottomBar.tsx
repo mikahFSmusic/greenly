@@ -44,7 +44,10 @@ export const BottomBar = (props: BottomBarProps) => {
           </Link>
         </Grid>
         <Grid item xs={4}>
-          <Link href="#" className={classes.link}>
+          <Link
+            href="https://www.facebook.com/webelieveingreen/?tsid=0.3079463699505257&source=result"
+            className={classes.link}
+          >
             Facebook
           </Link>
         </Grid>
