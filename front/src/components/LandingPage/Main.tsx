@@ -18,7 +18,7 @@ type MainProps = {
 
 export const Main = (props: MainProps) => {
   const [email, setEmail] = useState("");
-  const [successModalOpen, setSuccessModalOpen] = useState<boolean>(true);
+  const [successModalOpen, setSuccessModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleEmailChange = (
