@@ -1,5 +1,5 @@
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core/";
+import { Grid, Typography } from "@material-ui/core/";
 import "./Topics.scss";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -23,9 +23,9 @@ export const Topics = (props: TopicsProps) => {
   return (
     <div className={props.className}>
       <br></br>
-      <h2 className="header">
+      <Typography variant="h5" className="header">
         Topics we are interested in covering (send us a pitch!)
-      </h2>
+      </Typography>
       <Grid
         container
         spacing={3}
@@ -34,33 +34,24 @@ export const Topics = (props: TopicsProps) => {
         direction="row"
       >
         <Grid item xs>
-          Environmental impact of business
-          <br />
-          <br />
-          Politics of green technology
-          <br />
-          <br />
-          History behind key industries
+          <Typography variant="body2">Green Technology</Typography>
+          <Typography variant="body2">Clean Energy</Typography>
+          <Typography variant="body2">Environmental History</Typography>
+          <Typography variant="body2">Politics</Typography>
         </Grid>
 
         <Grid item xs>
-          Climate technology
-          <br />
-          <br />
-          Clean energy
-          <br />
-          <br />
-          Climate change
+          <Typography variant="body2">Climate Change</Typography>
+          <Typography variant="body2">Investing in Green</Typography>
+          <Typography variant="body2">Green Jobs</Typography>
+          <Typography variant="body2">Rising Companies</Typography>
         </Grid>
 
         <Grid item xs>
-          How to invest in green technology
-          <br />
-          <br />
-          Where green technology is headed
-          <br />
-          <br />
-          Companies to watch
+          <Typography variant="body2">Future Visions</Typography>
+          <Typography variant="body2">Sustainability</Typography>
+          <Typography variant="body2">Agriculture</Typography>
+          <Typography variant="body2">Clean Water Initiatives</Typography>
         </Grid>
       </Grid>
       <br />

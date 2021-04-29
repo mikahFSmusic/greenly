@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import Button from "@material-ui/core/Button";
-import GreenlyLogo from "../../assets/Greenly_logo.png";
+import GreenlyLogo from "./assets/GreenlyLogo.png";
 import {
   TextField,
   Typography,
@@ -8,7 +8,9 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Container,
 } from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { addEmail } from "../../API";
 import "./Main.scss";
 
@@ -16,7 +18,28 @@ type MainProps = {
   className: string;
 };
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      "& label.Mui-focused": {
+        color: "green",
+      },
+      "& .MuiFilledInput-underline:after": {
+        borderBottom: "2px solid green",
+      },
+    },
+    disabled: {
+      color: "gray",
+    },
+    emphasizedText: {
+      color: theme.palette.primary.main,
+      fontWeight: 600,
+    },
+  })
+);
+
 export const Main = (props: MainProps) => {
+  const classes = useStyles();
   const [email, setEmail] = useState("");
   const [successModalOpen, setSuccessModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,39 +78,45 @@ export const Main = (props: MainProps) => {
   return (
     <div className={props.className}>
       <div className="Content">
-        <p className="Coming-soon">COMING SOON...</p>
-        <img src={GreenlyLogo} alt="logo" className="Logo" />
-        <br />
-        <br />
-        <Typography className="Text-body">
-          For centuries, our fossil fuel civilization has pushed the world off
-          balance.
-          <br />
-          We're here to steer our planet back towards a more sustainable
-          equilibrium and, ultimately, a Green Revolution - the next step in
-          humanity's progress towards a future unconstrained by carbon emissions
-          and their ecological consequences.
-        </Typography>
-        <p className="Join-us">Join us and fight for our planet</p>
-        <form className="Form">
-          <TextField
-            className="Email-submit"
-            variant="filled"
-            label="Submit your email for an invite"
-            color="primary"
-            InputProps={{
-              endAdornment: (
-                <SubmitButton
-                  onSubmit={handleEmailSubmit}
-                  disabled={loading ? true : false}
-                />
-              ),
-            }}
-            margin="none"
-            onChange={handleEmailChange}
-            value={email}
-          ></TextField>
-        </form>
+        <Container className="Content-container">
+          <Container className="Text-container">
+            <img src={GreenlyLogo} alt="logo" className="Logo" />
+            <Typography className={classes.emphasizedText} variant="h5">
+              Home of the Green Revolution
+            </Typography>
+            <Typography variant="h5">
+              Where the world's greatest minds come together to discuss the
+              future of our planet.
+            </Typography>
+            <Typography variant="h5">
+              Join us in the fight for our planet.
+            </Typography>
+            <Typography variant="h5">Coming soon.</Typography>
+          </Container>
+          <Container className="Form-container">
+            <TextField
+              className={`Email-submit ${classes.root}`}
+              variant="filled"
+              label="Enter your email to get an invitation"
+              color="primary"
+              InputLabelProps={{
+                variant: "filled",
+              }}
+              InputProps={{
+                color: "primary",
+                endAdornment: (
+                  <SubmitButton
+                    onSubmit={handleEmailSubmit}
+                    disabled={loading ? true : false}
+                  />
+                ),
+              }}
+              margin="none"
+              onChange={handleEmailChange}
+              value={email}
+            />
+          </Container>
+        </Container>
       </div>
       <EmailSuccessModal
         open={successModalOpen}
